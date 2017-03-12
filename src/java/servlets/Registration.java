@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class Registration extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registration</title>");            
+            out.println("<title>Servlet Registration</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Registration at " + request.getContextPath() + "</h1>");
@@ -70,13 +71,20 @@ public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        Aimodotes donner = new Aimodotes();
-        donner.setAm(1);
-        donner.setLastName(lastName);
+        Aimodotes donor = new Aimodotes();
+        donor.setAm(Integer.parseInt(request.getParameter("kodikosAimodoti")));
+        donor.setLastName(request.getParameter("lastname"));
+        donor.setName(request.getParameter("name"));
+        donor.setAddress(request.getParameter("address"));
+        donor.setPhone(request.getParameter("phonenumber"));
+        donor.setBloodType(request.getParameter("omadaAimatos"));
+
+        dbmanager.createDonor(donor);
         
+        String nextJSP = "/card.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        dispatcher.forward(request, response);
         
-        dbmanager.createDonner( donner );
     }
 
     /**

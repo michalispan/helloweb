@@ -21,32 +21,32 @@
             <tbody>
         <form name="newblooddoner" action="Registration" method="POST">
         
-            <tr><td> Kodikos aimodoti</td>
-                <td> <input type="text" name="Kodikos_Aimodoti" value="c:out ${donner.lastname}" /></td>
+            <tr><td> Κωδικος Αιμοδοτη</td>
+                <td> <input type="text" name="kodikosAimodoti" value="" /></td>
             </tr>
             <tr>
-            <td>Last Name</td>
-                <td><input type="text" name="Lastname" value="" /></td>
+            <td>Επιθετο</td>
+                <td><input type="text" name="lastname" value="" /></td>
             </tr>
             <tr>
-            <td>Name</td>
-                <td><input type="text" name="Name" value="" /></td>
+            <td>Ονομα</td>
+                <td><input type="text" name="name" value="" /></td>
             </tr>
             <tr>
-            <td>Address</td>
-                <td><input type="text" name="Address" value="" /></td>
+            <td>Διευθυνση</td>
+                <td><input type="text" name="address" value="" /></td>
             </tr>
             <tr>
-            <td>Phone number</td>
+            <td>Αριθμος Τηλεφωνου</td>
                 <td><input type="text" name="phonenumber" value="" /></td>
             </tr> 
             <tr>
-            <td>Omada aimatos</td>
-                <td><input type="text" name="omadaaimatos" value="" /></td>
+            <td>Ομαδα Αιματος</td>
+                <td><input type="text" name="omadaAimatos" value="" /></td>
             </tr>
             <tr>
             
-                <td><input type="submit" name="SaveButton" value="Save" /></td>
+                <td><input type="submit" name="saveButton" value="Save" /></td>
             </tr>
             
             </form>
