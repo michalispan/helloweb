@@ -16,7 +16,7 @@
     
     
     <body>
-        <h1>Registration New Donor</h1>
+        <h1>Νεος Αιμοδοτης / Επεξεργασια</h1>
         <table border ="0">
             <tbody>
         <form name="newblooddoner" action="Registration" method="POST">
