@@ -17,6 +17,7 @@ class dbmanager {
     static void createDonor(Aimodotes donor) {
         System.out.println("Created donor: " + donor.getAm() + "-" + donor.getLastName());
     }
+    
     static List<Aimodotes> getDonors(){
         List<Aimodotes> list = new ArrayList<>();
         
@@ -29,8 +30,9 @@ class dbmanager {
         a.setPhone("2310545781");
         a.setProsforaList(new ArrayList<>());
         list.add(a);
+        
         a = new Aimodotes();
-        a.setAm(1);
+        a.setAm(2);
         a.setLastName("PAnagiotidis");
         a.setName("Vasilis");
         a.setBloodType("0+");
