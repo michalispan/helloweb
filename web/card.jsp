@@ -64,33 +64,11 @@
                 </tr>  
                 <tr>
                     <td><input type="text" name="hmeromhnia" value="" readonly="" /></td>
-                    <td><input type="text" name="hmeromhnia" value="" readonly="" /></td>
-                    <td><input type="text" name="hmeromhnia" value="" readonly="" /></td>
-                    <td><input type="text" name="hmeromhnia" value="" readonly="" /></td>
-                    
-                </tr>
-                <tr>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    
-                </tr>
-                <tr>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    <td><input type="text" name="fiales" value="" readonly="" /></td>
-                    
-                </tr>
-                <tr>
+                    <td><input type="text" name="prosfora" value="" readonly="" /></td>
+                    <td><input type="text" name="lipsi" value="" readonly="" /></td>
                     <td><input type="text" name="sxolia" value="" readonly="" /></td>
-                    <td><input type="text" name="sxolia" value="" readonly="" /></td>
-                    <td><input type="text" name="sxolia" value="" readonly="" /></td>
-                    <td><input type="text" name="sxolia" value="" readonly="" /></td>
-                   
                     
-                </tr>
+              
         
         
                 
@@ -119,7 +97,7 @@
                  <center><hr>
                  <input type="button" value="Νέα Δωρεά"/>
                  <input type="submit" value="Νέα Λήψη"  /> 
-                 <input type="submit" name="saveButton" value="Save" />
+                 <input type="submit" name="saveButton" value="Προβολή Όλων" />
                  </hr></center>
     </body>
 </html>

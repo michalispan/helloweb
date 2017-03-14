@@ -22,17 +22,25 @@
                 <th>Τηλεφωνο</th>
                 <th>Ομαδα Αιματος</th>
             </tr>
+            <c: foreach items="${donorlist}" var="donor">
             <tr>
-                <td><input type="text" name="am" value="" readonly/></td>
-            <td><input type="text" name="lastname" value="" readonly/></td>
+                <td><c:out value="{donor.am}" /></td>
+                <td><c:out value="{donor.lastname}" /></td>
+                <td><c:out value="{donor.name}" /></td>
+                <td><c:out value="{donor.address}" /></td>
+                <td><c:out value="{donor.phone}" /></td>
+                <td><c:out value="{donor.bloodType}" /></td>
+           <%-- <td><input type="text" name="lastname" value="" readonly/></td>
             <td><input type="text" name="name" value="" readonly/></td>
             <td><input type="text" name="address" value="" readonly/></td>
             <td><input type="text" name="phone" value="" readonly/></td>
-            <td><input type="text" name="bloodType" value="" readonly/></td>
+            <td><input type="text" name="bloodType" value="" readonly/></td>--%>
             <td><a href="card.jsp" >Καρτέλα</a></td><br>
             <td><a href="newblooddonor.jsp" >Επεξεργασία Αιμοδοτη</a></td> 
             </tr>
+            </c:>
         </table>
+        <input type="submit" value="Νέος Αιμοδότης" />
             
                
                     
