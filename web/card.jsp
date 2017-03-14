@@ -116,5 +116,10 @@
              
            </hr>
            </table> </center>
+                 <center><hr>
+                 <input type="button" value="Νέα Δωρεά"/>
+                 <input type="submit" value="Νέα Λήψη"  /> 
+                 <input type="submit" name="saveButton" value="Save" />
+                 </hr></center>
     </body>
 </html>
