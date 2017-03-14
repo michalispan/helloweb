@@ -5,17 +5,12 @@
  */
 package servlets;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -24,11 +19,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author michael
  */
-@Entity
-@Table(name = "PROSFORA")
-@NamedQueries({
-    @NamedQuery(name = "Prosfora.findAll", query = "SELECT p FROM Prosfora p")})
-public class Prosfora implements Serializable {
+public class Prosfora {
 
     private static final long serialVersionUID = 1L;
     @Id

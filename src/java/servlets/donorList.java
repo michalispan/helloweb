@@ -62,11 +62,13 @@ public class donorList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        List donorsList = new ArrayList();
-        donorsList = dbmanager.getDonors();
-        request.setAttribute("donorslist", donorsList);
+        response.setContentType("text/html;charset=UTF-8");
+        dbmanager db = new dbmanager();
+        List<Aimodotes> donorsList = new ArrayList<>();
+        donorsList = db.getDonors();
         String nextJSP = "/allDonors.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        request.setAttribute("donorlist", donorsList); 
         dispatcher.forward(request, response);
          
     }
@@ -82,7 +84,15 @@ public class donorList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        dbmanager db = new dbmanager();
+        List<Aimodotes> donorsList = new ArrayList<>();
+        donorsList = db.getDonors();
+        String nextJSP = "/allDonors.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        request.setAttribute("donorlist", donorsList);
+        dispatcher.forward(request, response);
     }
 
     /**

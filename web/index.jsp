@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <jsp:include page="/donorList"/>
+        <a href="http://localhost:8080/HelloWeb/donorList">Application</a>
     </body>
 </html>

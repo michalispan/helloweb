@@ -5,44 +5,21 @@
  */
 package servlets;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
  * @author michael
  */
-public class Aimodotes implements Serializable {
+public class Aimodotes {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "AM")
     private Integer am;
-    @Size(max = 20)
-    @Column(name = "LAST_NAME")
     private String lastName;
-    @Size(max = 20)
-    @Column(name = "NAME")
     private String name;
-    @Size(max = 20)
-    @Column(name = "ADDRESS")
     private String address;
-    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 15)
-    @Column(name = "PHONE")
     private String phone;
-    @Size(max = 20)
-    @Column(name = "BLOOD_TYPE")
     private String bloodType;
-    @OneToMany(mappedBy = "am")
     private List<Prosfora> prosforaList;
 
     public Aimodotes() {

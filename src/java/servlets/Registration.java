@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michael
  */
+
+@WebServlet(name = "Registration", urlPatterns = {"/Registration"})
 public class Registration extends HttpServlet {
 
     /**
@@ -71,6 +74,7 @@ public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        dbmanager dbmanager = new dbmanager();
         Aimodotes donor = new Aimodotes();
         donor.setAm(Integer.parseInt(request.getParameter("kodikosAimodoti")));
         donor.setLastName(request.getParameter("lastname"));
@@ -81,7 +85,7 @@ public class Registration extends HttpServlet {
 
         dbmanager.createDonor(donor);
         
-        String nextJSP = "/card.jsp";
+        String nextJSP = "/donorList";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
         
