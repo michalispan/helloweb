@@ -20,10 +20,10 @@ public class dbmanager {
     public void createDonor(Aimodotes donor) {
         System.out.println("Created donor: " + donor.getAm() + "-" + donor.getLastName());
     }
-    
-    public List<Aimodotes> getDonors(){
+
+    public List<Aimodotes> getDonors() {
         List<Aimodotes> list = new ArrayList<>();
-        
+
         Aimodotes a = new Aimodotes();
         a.setAm(1);
         a.setLastName("Panagiotidis");
@@ -33,7 +33,7 @@ public class dbmanager {
         a.setPhone("2310545781");
         a.setProsforaList(new ArrayList<>());
         list.add(a);
-        
+
         a = new Aimodotes();
         a.setAm(2);
         a.setLastName("Pelkas");
@@ -45,4 +45,22 @@ public class dbmanager {
         list.add(a);
         return list;
     }
+
+    Aimodotes getDonor(int am) {
+        Aimodotes a = new Aimodotes();
+        a.setAm(1);
+        a.setLastName("Panagiotidis");
+        a.setName("Vasilis");
+        a.setBloodType("0+");
+        a.setAddress("Kazantzaki 4B");
+        a.setPhone("2310545781");
+        a.setProsforaList(new ArrayList<>());
+        return a;
+    }
+
+    void updateDonor(Aimodotes donor) {
+        System.out.println("Updated donor: " + donor.getAm() + "-" + donor.getLastName());
+    }
+
 }
+ 

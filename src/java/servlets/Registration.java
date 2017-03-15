@@ -60,7 +60,20 @@ public class Registration extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            dbmanager dbmanager = new dbmanager();
+        int am = Integer.parseInt(request.getParameter("am"));
+        Aimodotes donor; 
+        if (am == 0){
+            donor = new Aimodotes();
+        } 
+        else {
+            donor=dbmanager.getDonor(am);
+        }
+        request.setAttribute("donor", donor);
+        String nextJSP = "/newblooddonor.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        dispatcher.forward(request, response);
+        
     }
 
     /**
@@ -75,15 +88,25 @@ public class Registration extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         dbmanager dbmanager = new dbmanager();
-        Aimodotes donor = new Aimodotes();
-        donor.setAm(Integer.parseInt(request.getParameter("kodikosAimodoti")));
+        Aimodotes donor;
+        String am = request.getParameter("kodikosAimodoti");
+        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
+            donor = new Aimodotes();
+        } else {
+            donor = dbmanager.getDonor(Integer.parseInt(am.trim()));
+        }
+//        donor.setAm();
         donor.setLastName(request.getParameter("lastname"));
         donor.setName(request.getParameter("name"));
         donor.setAddress(request.getParameter("address"));
         donor.setPhone(request.getParameter("phonenumber"));
         donor.setBloodType(request.getParameter("omadaAimatos"));
 
-        dbmanager.createDonor(donor);
+        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
+            dbmanager.createDonor(donor);
+        } else {
+            dbmanager.updateDonor(donor);
+        }
         
         String nextJSP = "/donorList";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);

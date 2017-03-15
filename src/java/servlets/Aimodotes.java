@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class Aimodotes {
 
-    private static final long serialVersionUID = 1L;
     private Integer am;
     private String lastName;
     private String name;
