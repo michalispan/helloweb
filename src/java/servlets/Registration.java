@@ -62,6 +62,7 @@ public class Registration extends HttpServlet {
             throws ServletException, IOException {
             dbmanager dbmanager = new dbmanager();
         int am = Integer.parseInt(request.getParameter("am"));
+        String energia = request.getParameter("action");
         Aimodotes donor; 
         if (am == 0){
             donor = new Aimodotes();
@@ -70,7 +71,12 @@ public class Registration extends HttpServlet {
             donor=dbmanager.getDonor(am);
         }
         request.setAttribute("donor", donor);
-        String nextJSP = "/newblooddonor.jsp";
+        String nextJSP;
+        if (energia.equals("card")) {
+            nextJSP = "/card.jsp";
+        } else {
+            nextJSP = "/newblooddonor.jsp";
+        }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
         

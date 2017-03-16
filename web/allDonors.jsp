@@ -35,12 +35,12 @@
                         <td><c:out value="${donor.address}" /></td>
                         <td><c:out value="${donor.phone}" /></td>
                         <td><c:out value="${donor.bloodType}" /></td>
-                        <td><a href="card.jsp">Καρτέλα</a></td>
-                        <td><a href="Registration?am=<c:out value="${donor.am}"/>">Επεξεργασία Αιμοδοτη</a></td> 
+                        <td><a href="Registration?am=<c:out value="${donor.am}"/>&action=card">Καρτέλα</a></td>
+                        <td><a href="Registration?am=<c:out value="${donor.am}"/>&action=edit">Επεξεργασία Αιμοδοτη</a></td> 
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <a href="Registration?am=0" >Νέος Αιμοδοτης</a>
+        <a href="Registration?am=0&action=create" >Νέος Αιμοδοτης</a>
     </body>
 </html>

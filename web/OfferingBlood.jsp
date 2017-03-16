@@ -12,32 +12,33 @@
         <title>Offering Blood</title>
     </head>
     <body>
+       
         <h1>Προσφορα Αιματος</h1>
         <table border="0">
             <tbody>
             <tr>    
             <td>Μητρωο</td>    
-                <td><input type="text" name="mhtrwo" value=""/></td>
+                <td><input type="text" name="mhtrwo" value="" /> </td>
             </tr>
             <tr>    
             <td>Επωνυμο</td>    
-                <td><input type="text" name="eponumo" value=""/></td>
+                <td><input type="text" name="eponumo" value="" /></td>
             </tr>
             <tr>    
             <td>Ημερομηνια</td>    
-                <td><input type="date" name="dates" value=""/></td>
+                <td><input type="date" name="dates" value="" /></td>
             </tr>
             <tr>    
             <td>Φιάλες</td>    
-                <td><input type="text" name="fiales" value=""/></td>
+                <td><input type="text" name="fiales" value="" /></td>
             </tr>
             <tr>    
             <td>Σχόλια</td>    
-                <td><input type="text" name="sxolia" value=""/></td>
+                <td><input type="text" name="sxolia" value="" /></td>
             </tr>
             <tr>    
                 
-                <td><input type="submit" name="Save" value="Save"/></td>
+                <td><a href="card.jsp">αποθηκευση</a></td>
             </tr>
         
         
@@ -45,7 +46,7 @@
         
         
         
-        
+          
             </tbody>
         </table>
     </body>

@@ -95,9 +95,14 @@
            </hr>
            </table> </center>
                  <center><hr>
-                 <input type="button" value="Νέα Δωρεά"/>
-                 <input type="submit" value="Νέα Λήψη"  /> 
-                 <input type="submit" name="saveButton" value="Προβολή Όλων" />
+                     <td><a href="OfferingBlood.jsp">Νέα Δωρέα</a></td>
+                     <td><a href="ReceiptBlood.jsp">Νέα Λήψη</a></td>
+                     <td><a href="donorList">Προβολή Όλων</a></td>
+                     
+                     
+                     
+                     
+                     
                  </hr></center>
     </body>
 </html>

@@ -61,6 +61,9 @@ public class dbmanager {
     void updateDonor(Aimodotes donor) {
         System.out.println("Updated donor: " + donor.getAm() + "-" + donor.getLastName());
     }
+    public void createdorea() {
+        
+    }
 
 }
  
