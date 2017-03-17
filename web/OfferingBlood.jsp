@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,42 +13,35 @@
         <title>Offering Blood</title>
     </head>
     <body>
-       
-        <h1>Προσφορα Αιματος</h1>
-        <table border="0">
-            <tbody>
-            <tr>    
-            <td>Μητρωο</td>    
-                <td><input type="text" name="mhtrwo" value="" /> </td>
-            </tr>
-            <tr>    
-            <td>Επωνυμο</td>    
-                <td><input type="text" name="eponumo" value="" /></td>
-            </tr>
-            <tr>    
-            <td>Ημερομηνια</td>    
-                <td><input type="date" name="dates" value="" /></td>
-            </tr>
-            <tr>    
-            <td>Φιάλες</td>    
-                <td><input type="text" name="fiales" value="" /></td>
-            </tr>
-            <tr>    
-            <td>Σχόλια</td>    
-                <td><input type="text" name="sxolia" value="" /></td>
-            </tr>
-            <tr>    
-                
-                <td><a href="card.jsp">αποθηκευση</a></td>
-            </tr>
-        
-        
-        
-        
-        
-        
-          
-            </tbody>
-        </table>
+
+        <h1>Προσφορά Αίματος</h1>
+        <form name="dorea" action="movement" method="POST">
+            <table border="0">
+                <tr>    
+                    <td>Μητρωο</td>    
+                    <td><input type="text" name="mhtrwo" value="<c:out value="${donor.am}"/>" readonly/> </td>
+                </tr>
+                <tr>    
+                    <td>Επωνυμο</td>    
+                    <td><input type="text" name="eponumo" value="<c:out value="${donor.lastName}"/>" readonly /></td>
+                </tr>
+                <tr>    
+                    <td>Ημερομηνια</td>    
+                    <td><input type="date" name="dates" value="" /></td>
+                </tr>
+                <tr>    
+                    <td>Φιάλες</td>    
+                    <td><input type="text" name="fiales" value="" /></td>
+                </tr>
+                <tr>    
+                    <td>Σχόλια</td>    
+                    <td><input type="text" name="sxolia" value="" /></td>
+                </tr>
+
+
+            </table>
+            <input type="submit" value="Save"/>
+        </form>
+
     </body>
 </html>

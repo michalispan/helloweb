@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,16 +14,15 @@
     </head>
     <body>
         <h1>Ληψη Αιματος</h1>
-        
+        <form name="dorea" action="movement" method="POST">
         <table border="0">
-            <tbody>
             <tr>    
             <td>Μητρωο</td>    
-                <td><input type="text" name="mhtrwo" value=""/></td>
+                <td><input type="text" name="mhtrwo" value="<c:out value="${donor.am}"/>" readonly/></td>
             </tr>
             <tr>    
             <td>Επωνυμο</td>    
-                <td><input type="text" name="eponumo" value=""/></td>
+                <td><input type="text" name="eponumo" value="<c:out value="${donor.lastName}"/>" readonly /></td>
             </tr>
             <tr>    
             <td>Ημερομηνια</td>    
@@ -38,18 +38,13 @@
             </tr>
             <tr>    
                 
-                <td><input type="submit" name="Save" value="Save"/></td>
+                
             </tr>
         
-        
-        
-        
-        
-        
-        
-            </tbody>
+            
         </table>
-        
+            <td><input type="submit" name="Save" value="Save"/></td>
+         </form>
         
         
         

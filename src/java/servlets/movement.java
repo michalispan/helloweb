@@ -7,6 +7,10 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michael
  */
-@WebServlet(name = "Registration", urlPatterns = {"/Registration"})
-public class Registration extends HttpServlet {
+@WebServlet(name = "movement", urlPatterns = {"/movement"})
+public class movement extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +42,10 @@ public class Registration extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Registration</title>");
+            out.println("<title>Servlet movement</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Registration at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet movement at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,31 +63,9 @@ public class Registration extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        dbmanager dbmanager = new dbmanager();
-        int am = Integer.parseInt(request.getParameter("am"));
-        String energia = request.getParameter("action");
-        Aimodotes donor;
-        if (am == 0) {
-            donor = new Aimodotes();
-        } else {
-            donor = dbmanager.getDonor(am);
-        }
-        String nextJSP;
-        if (energia.equals("card")) {
-            nextJSP = "/card.jsp";
-        } else if (energia.equals("offer"))  {
-            nextJSP = "/OfferingBlood.jsp";
-        }
-          else if (energia.equals("take")){
-                    nextJSP = "/ReceiptBlood.jsp";
-                    }
-         else {
-            nextJSP = "/newblooddonor.jsp";
-        }
-        request.setAttribute("donor", donor);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-
+        
+        
+        processRequest(request, response);
     }
 
     /**
@@ -97,31 +79,29 @@ public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dbmanager dbmanager = new dbmanager();
-        Aimodotes donor;
-        String am = request.getParameter("kodikosAimodoti");
-        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
-            donor = new Aimodotes();
-        } else {
-            donor = dbmanager.getDonor(Integer.parseInt(am.trim()));
+        Prosfora dorea;
+        dorea = new Prosfora();
+        dorea.setAm(Integer.parseInt(request.getParameter("mhtrwo")));
+        dorea.setBloodBottle(Integer.parseInt(request.getParameter("fiales")));
+        try {
+            dorea.setDate(dateFormat.parse(request.getParameter("dates")));
+        } catch (ParseException ex) {
+            Logger.getLogger(movement.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        donor.setAm();
-        donor.setLastName(request.getParameter("lastname"));
-        donor.setName(request.getParameter("name"));
-        donor.setAddress(request.getParameter("address"));
-        donor.setPhone(request.getParameter("phonenumber"));
-        donor.setBloodType(request.getParameter("omadaAimatos"));
-
-        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
-            dbmanager.createDonor(donor);
-        } else {
-            dbmanager.updateDonor(donor);
-        }
-
-        String nextJSP = "/donorList";
+        dorea.setSxolia(request.getParameter("sxolia"));
+        dorea.setTheirsBlood(0);
+        
+        dbmanager.createMovement(dorea);
+        Aimodotes donor = dbmanager.getDonor(dorea.getAm());
+        request.setAttribute("donor", donor);
+        String nextJSP = "/card.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(request, response);
-
+        
+        
+        
     }
 
     /**

@@ -6,14 +6,6 @@
 package servlets;
 
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,22 +13,12 @@ import javax.validation.constraints.NotNull;
  */
 public class Prosfora {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "PK_P")
     private Integer pkP;
-    @Column(name = "BLOOD_BOTTLE")
     private Integer bloodBottle;
-    @Column(name = "DATE")
-    @Temporal(TemporalType.DATE)
     private Date date;
-    @Column(name = "THEIRS_BLOOD")
+    private String sxolia;
     private Integer theirsBlood;
-    @JoinColumn(name = "AM", referencedColumnName = "AM")
-    @ManyToOne
-    private Aimodotes am;
+    private Integer am;
 
     public Prosfora() {
     }
@@ -77,12 +59,20 @@ public class Prosfora {
         this.theirsBlood = theirsBlood;
     }
 
-    public Aimodotes getAm() {
+    public Integer getAm() {
         return am;
     }
 
-    public void setAm(Aimodotes am) {
+    public void setAm(Integer am) {
         this.am = am;
+    }
+
+    public String getSxolia() {
+        return sxolia;
+    }
+
+    public void setSxolia(String sxolia) {
+        this.sxolia = sxolia;
     }
 
     @Override

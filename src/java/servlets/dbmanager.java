@@ -6,6 +6,7 @@
 package servlets;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,16 +55,49 @@ public class dbmanager {
         a.setBloodType("0+");
         a.setAddress("Kazantzaki 4B");
         a.setPhone("2310545781");
-        a.setProsforaList(new ArrayList<>());
+        
+        List<Prosfora> list = new ArrayList<>();
+        
+        Prosfora p = new Prosfora();
+        p.setPkP(1);
+        p.setAm(a.getAm());
+        p.setBloodBottle(1);
+        p.setTheirsBlood(0);
+        p.setDate(new Date());
+        p.setSxolia("ΑΙΜΟΔΟΣΙΑ ΣΤΟ ΠΑΠΑΝΙΚΟΛΑΟΥ");
+        list.add(p);
+        
+        p = new Prosfora();
+        p.setPkP(2);
+        p.setAm(a.getAm());
+        p.setBloodBottle(1);
+        p.setTheirsBlood(0);
+        p.setDate(new Date());
+        p.setSxolia("ΑΙΜΟΔΟΣΙΑ ΣΤΟ ΓΕΝΝΗΜΑΤΑ");
+        list.add(p);
+        
+        p = new Prosfora();
+        p.setPkP(3);
+        p.setAm(a.getAm());
+        p.setBloodBottle(0);
+        p.setTheirsBlood(1);
+        p.setDate(new Date());
+        p.setSxolia("ΧΡΗΣΗ ΦΙΑΛΗΣ ΓΙΑ ΑΣΘΕΝΕΙΑ");
+        list.add(p);
+        
+        a.setProsforaList(list);
+        
         return a;
     }
 
     void updateDonor(Aimodotes donor) {
         System.out.println("Updated donor: " + donor.getAm() + "-" + donor.getLastName());
     }
-    public void createdorea() {
-        
+
+    void createMovement(Prosfora dorea) {
+        System.out.println("Created Movement: " + dorea.getAm() + "-" + dorea.getBloodBottle());
     }
+    
 
 }
  

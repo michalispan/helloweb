@@ -19,6 +19,9 @@ public class Aimodotes {
     private String address;
     private String phone;
     private String bloodType;
+    private int totP; // Synolo fialon poy edose
+    private int totL; // Synolo fialon pou pire
+    private int ypol; // Ypoloipo pou tou menei
     private List<Prosfora> prosforaList;
 
     public Aimodotes() {
@@ -84,26 +87,26 @@ public class Aimodotes {
         this.prosforaList = prosforaList;
     }
 
-    public int hashCode() {
-        int hash = 0;
-        hash += (am != null ? am.hashCode() : 0);
-        return hash;
+    public int getTotP() {
+        totP = 0;
+        for (Prosfora p : prosforaList) {
+            totP += p.getBloodBottle();
+        }
+        return totP;
     }
 
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Aimodotes)) {
-            return false;
+    public int getTotL() {
+        totL = 0;
+        for (Prosfora p : prosforaList) {
+            totL += p.getTheirsBlood();
         }
-        Aimodotes other = (Aimodotes) object;
-        if ((this.am == null && other.am != null) || (this.am != null && !this.am.equals(other.am))) {
-            return false;
-        }
-        return true;
+        return totL;
     }
 
-    public String toString() {
-        return "servlets.Aimodotes[ am=" + am + " ]";
+    public int getYpol() {
+        ypol = getTotP() - getTotL();
+        return ypol;
     }
+
     
 }
