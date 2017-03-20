@@ -5,6 +5,9 @@
  */
 package servlets;
 
+import db.dbmanager;
+import db.Prosfora;
+import db.Aimodotes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -79,6 +82,7 @@ public class movement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dbmanager dbmanager = new dbmanager();
         Prosfora dorea;

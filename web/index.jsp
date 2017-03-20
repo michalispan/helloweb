@@ -9,10 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Java Web Application</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <a href="http://localhost:8080/HelloWeb/donorList">Application</a>
+    <center>  <h1>Μιχάλης Παναγιωτίδης</h1>
+        <h2>Εργασια Τράπεζα Αιματος</h2>
+        <h3> Διαδικτυακές Εφαρμογές </h3>
+        <a href="http://localhost:8080/HelloWeb/donorList">Είσοδος</a></center>
     </body>
 </html>

@@ -5,6 +5,8 @@
  */
 package servlets;
 
+import db.dbmanager;
+import db.Aimodotes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -59,6 +61,8 @@ public class Registration extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         dbmanager dbmanager = new dbmanager();
         int am = Integer.parseInt(request.getParameter("am"));
         String energia = request.getParameter("action");
@@ -97,10 +101,12 @@ public class Registration extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         dbmanager dbmanager = new dbmanager();
         Aimodotes donor;
-        String am = request.getParameter("kodikosAimodoti");
-        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
+        String am = request.getParameter("kodikosAimodoti").trim();
+        if (am == null || am.isEmpty() || am.equalsIgnoreCase("0")) {
             donor = new Aimodotes();
         } else {
             donor = dbmanager.getDonor(Integer.parseInt(am.trim()));
@@ -112,7 +118,7 @@ public class Registration extends HttpServlet {
         donor.setPhone(request.getParameter("phonenumber"));
         donor.setBloodType(request.getParameter("omadaAimatos"));
 
-        if (am.isEmpty() || am.equalsIgnoreCase("0")) {
+        if (am == null || am.isEmpty() || am.equalsIgnoreCase("0")) {
             dbmanager.createDonor(donor);
         } else {
             dbmanager.updateDonor(donor);
