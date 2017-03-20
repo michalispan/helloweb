@@ -7,9 +7,11 @@ package db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +21,7 @@ import java.util.logging.Logger;
  * @author Μιχάλης
  */
 public class dbmanager {
-    
+
     Connection conn;
 
     public dbmanager() {
@@ -45,79 +47,95 @@ public class dbmanager {
     public List<Aimodotes> getDonors() {
         List<Aimodotes> list = new ArrayList<>();
 
-        Aimodotes a = new Aimodotes();
-        a.setAm(1);
-        a.setLastName("Panagiotidis");
-        a.setName("Vasilis");
-        a.setBloodType("0+");
-        a.setAddress("Kazantzaki 4B");
-        a.setPhone("2310545781");
-        a.setProsforaList(new ArrayList<>());
-        list.add(a);
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT AM, LAST_NAME, NAME, ADDRESS, PHONE, BLOOD_TYPE"
+                    + " FROM AIMODOTES");
+            ResultSet result = stmt.executeQuery();
+            Aimodotes donor;
+            while (result.next()) {
+                donor = new Aimodotes();
+                donor.setAm(result.getInt(1));
+                donor.setLastName(result.getString(2));
+                donor.setName(result.getString(3));
+                donor.setAddress(result.getString(4));
+                donor.setPhone(result.getString(5));
+                donor.setBloodType(result.getString(6));
+                list.add(donor);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbmanager.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        a = new Aimodotes();
-        a.setAm(2);
-        a.setLastName("Pelkas");
-        a.setName("Dimitris");
-        a.setBloodType("ΑΒ+");
-        a.setAddress("Γλυνου 56");
-        a.setPhone("2313027727");
-        a.setProsforaList(new ArrayList<>());
-        list.add(a);
         return list;
     }
 
     public Aimodotes getDonor(int am) {
-        Aimodotes a = new Aimodotes();
-        a.setAm(1);
-        a.setLastName("Panagiotidis");
-        a.setName("Vasilis");
-        a.setBloodType("0+");
-        a.setAddress("Kazantzaki 4B");
-        a.setPhone("2310545781");
-        
-        List<Prosfora> list = new ArrayList<>();
-        
-        Prosfora p = new Prosfora();
-        p.setPkP(1);
-        p.setAm(a.getAm());
-        p.setBloodBottle(1);
-        p.setTheirsBlood(0);
-        p.setDate(new Date());
-        p.setSxolia("ΑΙΜΟΔΟΣΙΑ ΣΤΟ ΠΑΠΑΝΙΚΟΛΑΟΥ");
-        list.add(p);
-        
-        p = new Prosfora();
-        p.setPkP(2);
-        p.setAm(a.getAm());
-        p.setBloodBottle(1);
-        p.setTheirsBlood(0);
-        p.setDate(new Date());
-        p.setSxolia("ΑΙΜΟΔΟΣΙΑ ΣΤΟ ΓΕΝΝΗΜΑΤΑ");
-        list.add(p);
-        
-        p = new Prosfora();
-        p.setPkP(3);
-        p.setAm(a.getAm());
-        p.setBloodBottle(0);
-        p.setTheirsBlood(1);
-        p.setDate(new Date());
-        p.setSxolia("ΧΡΗΣΗ ΦΙΑΛΗΣ ΓΙΑ ΑΣΘΕΝΕΙΑ");
-        list.add(p);
-        
-        a.setProsforaList(list);
-        
-        return a;
+        Aimodotes donor = new Aimodotes();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT AM, LAST_NAME, NAME, ADDRESS, PHONE, BLOOD_TYPE FROM AIMODOTES WHERE AM = ?");
+            stmt.setInt(1, am);
+            ResultSet result = stmt.executeQuery();
+            donor.setAm(result.getInt(1));
+            donor.setLastName(result.getString(2));
+            donor.setName(result.getString(3));
+            donor.setAddress(result.getString(4));
+            donor.setPhone(result.getString(5));
+            donor.setBloodType(result.getString(6));
+
+            List<Prosfora> list = new ArrayList<>();
+            stmt = conn.prepareStatement("SELECT AM, BLOODBOTTLE, DATE, THEIRSBLOOD, PK_P ,SXOLIA FROM PROSFORA WHERE AM = ?");
+            stmt.setInt(1, am);
+            result = stmt.executeQuery();
+            Prosfora doli;
+            while (result.next()) {
+                doli = new Prosfora();
+                doli.setAm(result.getInt(1));
+                doli.setBloodBottle(result.getInt(2));
+                doli.setDate(result.getDate(3));
+                doli.setTheirsBlood(result.getInt(4));
+                doli.setPkP(result.getInt(5));
+                doli.setSxolia(result.getString(6));
+                list.add(doli);
+            }
+
+            donor.setProsforaList(list);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dbmanager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return donor;
     }
 
     public void updateDonor(Aimodotes donor) {
-        System.out.println("Updated donor: " + donor.getAm() + "-" + donor.getLastName());
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE AIMODOTES SET LAST_NAME = ?,NAME = ? , ADDRESS = ? ,BLOOD_TYPE = ? , PHONE = ? , WHERE AM = ?");
+            stmt.setString(1, donor.getLastName());
+            stmt.setString(2, donor.getName());
+            stmt.setString(3, donor.getAddress());
+            stmt.setString(4, donor.getBloodType());
+            stmt.setString(5, donor.getPhone());
+            stmt.setInt(6, donor.getAm());
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dbmanager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void createMovement(Prosfora dorea) {
-        System.out.println("Created Movement: " + dorea.getAm() + "-" + dorea.getBloodBottle());
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PROSFORA SET AM, BLOODBOTTLE, DATE, THEIRSBLOOD, PK_P ,SXOLIA VALUES (?, ?, ?, ?, ?)");
+            stmt.setInt(1, dorea.getAm());
+            stmt.setInt(2, dorea.getBloodBottle());
+            stmt.setDate(3, (java.sql.Date) dorea.getDate());
+            stmt.setInt(4, dorea.getTheirsBlood());
+            stmt.setInt(5, dorea.getPkP());
+            stmt.setString(6, dorea.getSxolia());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(dbmanager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
 
 }
- 
