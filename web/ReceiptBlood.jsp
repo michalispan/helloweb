@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Ληψη Αιματος</h1>
-        <form name="dorea" action="movement" method="POST">
+        <form name="lipsi" action="movement" method="POST">
         <table border="0">
             <tr>    
             <td>Μητρωο</td>    

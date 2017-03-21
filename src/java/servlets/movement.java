@@ -83,19 +83,22 @@ public class movement extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        request.setCharacterEncoding("UTF-8");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dbmanager dbmanager = new dbmanager();
         Prosfora dorea;
         dorea = new Prosfora();
         dorea.setAm(Integer.parseInt(request.getParameter("mhtrwo")));
+        String formname = 
         dorea.setBloodBottle(Integer.parseInt(request.getParameter("fiales")));
+        dorea.setTheirsBlood(0);
+        
         try {
             dorea.setDate(dateFormat.parse(request.getParameter("dates")));
         } catch (ParseException ex) {
             Logger.getLogger(movement.class.getName()).log(Level.SEVERE, null, ex);
         }
         dorea.setSxolia(request.getParameter("sxolia"));
-        dorea.setTheirsBlood(0);
         
         dbmanager.createMovement(dorea);
         Aimodotes donor = dbmanager.getDonor(dorea.getAm());

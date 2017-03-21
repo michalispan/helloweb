@@ -75,6 +75,7 @@ public class dbmanager {
             PreparedStatement stmt = conn.prepareStatement("SELECT AM, LAST_NAME, NAME, ADDRESS, PHONE, BLOOD_TYPE FROM AIMODOTES WHERE AM = ?");
             stmt.setInt(1, am);
             ResultSet result = stmt.executeQuery();
+            result.next();
             donor.setAm(result.getInt(1));
             donor.setLastName(result.getString(2));
             donor.setName(result.getString(3));
@@ -83,7 +84,7 @@ public class dbmanager {
             donor.setBloodType(result.getString(6));
 
             List<Prosfora> list = new ArrayList<>();
-            stmt = conn.prepareStatement("SELECT AM, BLOODBOTTLE, DATE, THEIRSBLOOD, PK_P ,SXOLIA FROM PROSFORA WHERE AM = ?");
+            stmt = conn.prepareStatement("SELECT AM, BLOOD_BOTTLE, DATE, THEIRS_BLOOD, PK_P ,SXOLIA FROM PROSFORA WHERE AM = ?");
             stmt.setInt(1, am);
             result = stmt.executeQuery();
             Prosfora doli;
@@ -109,7 +110,7 @@ public class dbmanager {
 
     public void updateDonor(Aimodotes donor) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE AIMODOTES SET LAST_NAME = ?,NAME = ? , ADDRESS = ? ,BLOOD_TYPE = ? , PHONE = ? , WHERE AM = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE AIMODOTES SET LAST_NAME = ?, NAME = ? , ADDRESS = ? ,BLOOD_TYPE = ? , PHONE = ? WHERE AM = ?");
             stmt.setString(1, donor.getLastName());
             stmt.setString(2, donor.getName());
             stmt.setString(3, donor.getAddress());
@@ -125,13 +126,12 @@ public class dbmanager {
 
     public void createMovement(Prosfora dorea) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PROSFORA SET AM, BLOODBOTTLE, DATE, THEIRSBLOOD, PK_P ,SXOLIA VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PROSFORA (AM, BLOOD_BOTTLE, DATE, THEIRS_BLOOD, SXOLIA) VALUES (?, ?, ?, ?, ?)");
             stmt.setInt(1, dorea.getAm());
             stmt.setInt(2, dorea.getBloodBottle());
-            stmt.setDate(3, (java.sql.Date) dorea.getDate());
+            stmt.setDate(3, new java.sql.Date(dorea.getDate().getTime()));
             stmt.setInt(4, dorea.getTheirsBlood());
-            stmt.setInt(5, dorea.getPkP());
-            stmt.setString(6, dorea.getSxolia());
+            stmt.setString(5, dorea.getSxolia());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(dbmanager.class.getName()).log(Level.SEVERE, null, ex);
