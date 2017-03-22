@@ -5,9 +5,9 @@
  */
 package servlets;
 
-import db.dbmanager;
-import db.Prosfora;
 import db.Aimodotes;
+import db.Prosfora;
+import db.dbmanager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author michael
  */
-@WebServlet(name = "movement", urlPatterns = {"/movement"})
-public class movement extends HttpServlet {
+@WebServlet(name = "lipsi", urlPatterns = {"/lipsi"})
+public class lipsi extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +45,10 @@ public class movement extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet movement</title>");            
+            out.println("<title>Servlet lipsi</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet movement at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet lipsi at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,8 +66,6 @@ public class movement extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
         processRequest(request, response);
     }
 
@@ -86,22 +84,20 @@ public class movement extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dbmanager dbmanager = new dbmanager();
-        Prosfora dorea;
-        dorea = new Prosfora();
-        dorea.setAm(Integer.parseInt(request.getParameter("mhtrwo")));
-        String formname = 
-        dorea.setBloodBottle(Integer.parseInt(request.getParameter("fiales")));
-        dorea.setTheirsBlood(0);
-        
+        Prosfora lipsi;
+        lipsi = new Prosfora();
+        lipsi.setAm(Integer.parseInt(request.getParameter("mhtrwo")));
+        lipsi.setTheirsBlood(Integer.parseInt(request.getParameter("fiales")));
+        lipsi.setBloodBottle(0);
         try {
-            dorea.setDate(dateFormat.parse(request.getParameter("dates")));
+            lipsi.setDate(dateFormat.parse(request.getParameter("dates")));
         } catch (ParseException ex) {
-            Logger.getLogger(movement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Dorea.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dorea.setSxolia(request.getParameter("sxolia"));
+        lipsi.setSxolia(request.getParameter("sxolia"));
         
-        dbmanager.createMovement(dorea);
-        Aimodotes donor = dbmanager.getDonor(dorea.getAm());
+        dbmanager.createMovement(lipsi);
+        Aimodotes donor = dbmanager.getDonor(lipsi.getAm());
         request.setAttribute("donor", donor);
         String nextJSP = "/card.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
@@ -109,6 +105,7 @@ public class movement extends HttpServlet {
         
         
         
+        processRequest(request, response);
     }
 
     /**

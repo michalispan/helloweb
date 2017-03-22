@@ -15,7 +15,7 @@
     <body>
 
         <h1>Προσφορά Αίματος</h1>
-        <form name="dorea" action="movement" method="POST">
+        <form name="dorea" action="Dorea" method="POST">
             <table border="0">
                 <tr>    
                     <td>Μητρωο</td>    
