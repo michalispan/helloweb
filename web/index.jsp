@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,6 @@
     <center>  <h1>Μιχάλης Παναγιωτίδης</h1>
         <h2>Εργασια Τράπεζα Αιματος</h2>
         <h3> Διαδικτυακές Εφαρμογές </h3>
-        <a href="http://localhost:8080/helloweb/donorList">Είσοδος</a></center>
+        <a href="donorList">Είσοδος</a></center>
     </body>
 </html>
