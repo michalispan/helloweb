@@ -9,6 +9,7 @@ import db.dbmanager;
 import db.Aimodotes;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -69,6 +70,7 @@ public class Registration extends HttpServlet {
         Aimodotes donor;
         if (am == 0) {
             donor = new Aimodotes();
+            donor.setProsforaList(new ArrayList<>());
         } else {
             donor = dbmanager.getDonor(am);
         }

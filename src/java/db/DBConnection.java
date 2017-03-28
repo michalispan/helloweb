@@ -19,8 +19,13 @@ public class DBConnection {
     
     private static Connection conn = null;
     
-    private static String driver = "org.apache.derby.jdbc.ClientDriver";
-    private static String url = "jdbc:derby://localhost:1527/sample";
+//    private static String driver = "org.apache.derby.jdbc.ClientDriver";
+//    private static String url = "jdbc:derby://localhost:1527/sample";
+//    private static String user = "app";
+//    private static String pwd = "app";
+    
+    private static String driver = "com.mysql.jdbc.Driver";
+    private static String url = "jdbc:mysql://localhost:3306/bloodbank";
     private static String user = "app";
     private static String pwd = "app";
     
