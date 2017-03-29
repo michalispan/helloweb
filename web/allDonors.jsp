@@ -13,16 +13,16 @@
         <title>All Donors</title>
     </head>
     <body>
-        <h1>Δωρητές</h1>
+        <h1>Αιμοδότες</h1>
         <table border="1">
             <thead>
                 <tr>
                     <th>AM</th>
-                    <th>Επωνυμο</th>
-                    <th>Ονομα</th>
-                    <th>Διευθυνση</th>
-                    <th>Τηλεφωνο</th>
-                    <th>Ομαδα Αιματος</th>
+                    <th>Επώνυμο</th>
+                    <th>Όνομα</th>
+                    <th>Διεύθυνση</th>
+                    <th>Τηλέφωνο</th>
+                    <th>Ομάδα Αίματος</th>
                     <th>Ενέργειες</th>
                 </tr>
             </thead>
@@ -36,11 +36,11 @@
                         <td><c:out value="${donor.phone}" /></td>
                         <td><c:out value="${donor.bloodType}" /></td>
                         <td><a href="Registration?am=<c:out value="${donor.am}"/>&action=card">Καρτέλα</a></td>
-                        <td><a href="Registration?am=<c:out value="${donor.am}"/>&action=edit">Επεξεργασία Αιμοδοτη</a></td> 
+                        <td><a href="Registration?am=<c:out value="${donor.am}"/>&action=edit">Επεξεργασία Αιμοδότη</a></td> 
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <a href="Registration?am=0&action=create" >Νέος Αιμοδοτης</a>
+        <a href="Registration?am=0&action=create" >Νέος Αιμοδότης</a>
     </body>
 </html>

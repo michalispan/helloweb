@@ -21,8 +21,8 @@
             <table style="width:50%">
                 <tr>
                     <th>AM</th>
-                    <th>Επωνυμο</th>
-                    <th>Ονομα</th>
+                    <th>Επώνυμο</th>
+                    <th>Όνομα</th>
                 </tr>
                 <tr>
                     <td><input type="text" name="am" value="<c:out value="${donor.am}"/>" readonly/></td>
@@ -32,9 +32,9 @@
 
                 </tr>
                 <tr>
-                    <th>Διευθυνση</th>
-                    <th>Τηλεφωνο</th>
-                    <th>Ομαδα Αιματος</th>
+                    <th>Διεύθυνση</th>
+                    <th>Τηλέφωνο</th>
+                    <th>Ομάδα Αίματος</th>
                 </tr>
                 <tr>
                     <td><input type="text" name="address" value="<c:out value="${donor.address}"/>" readonly/></td>
@@ -51,8 +51,8 @@
 
 
             <tr>
-                <th>Ημερομηνια</th>
-                <th>Φιάλες Προσφορας</th>
+                <th>Ημερομηνία</th>
+                <th>Φιάλες Προσφοράς</th>
                 <th>Φιάλες Λήψης</th>
                 <th>Σχόλια</th>
 
@@ -70,13 +70,13 @@
         <table>
 
             <tr> <%--(sinolof_p =fiali prosforas) & (sinolof_l = fiali lipsis)  --%>
-                <td>Συνολο</td>
+                <td>Σύνολο</td>
                 <td><input type="text" name="sinolof_p" value="<c:out value="${donor.totP}"/>" readonly/></td>
                 <td><input type="text" name="sinolof_l" value="<c:out value="${donor.totL}"/>" readonly/></td>
 
             </tr>
             <tr>
-                <td>Υπολοιπο</td>
+                <td>Υπόλοιπο</td>
                 <td><input type="text" name="ypoloipof_p" value="<c:out value="${donor.ypol}"/>" readonly/></td>
             </tr>
 

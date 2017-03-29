@@ -14,19 +14,19 @@
     </head>
     <body>
 
-        <h1>Προσφορά Αίματος</h1>
+        <h1>Δωρεά Αίματος</h1>
         <form name="Dorea" action="Dorea" method="POST">
             <table border="0">
                 <tr>    
-                    <td>Μητρωο</td>    
+                    <td>Μητρώο</td>    
                     <td><input type="text" name="mhtrwo" value="<c:out value="${donor.am}"/>" readonly/> </td>
                 </tr>
                 <tr>    
-                    <td>Επωνυμο</td>    
+                    <td>Επώνυμο</td>    
                     <td><input type="text" name="eponumo" value="<c:out value="${donor.lastName}"/>" readonly /></td>
                 </tr>
                 <tr>    
-                    <td>Ημερομηνια</td>    
+                    <td>Ημερομηνία</td>    
                     <td><input type="date" name="dates" value="" /></td>
                 </tr>
                 <tr>    
