@@ -20,7 +20,7 @@ public class DBConnection {
     private static Connection conn = null;
     
     private static String createAimodotes = "create table AIMODOTES" +
-"	AM INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 10000, INCREMENT BY 1)," +
+"	(AM INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 10000, INCREMENT BY 1)," +
 "	LAST_NAME VARCHAR(30)," +
 "	NAME VARCHAR(30)," +
 "	ADDRESS VARCHAR(30)," +
@@ -28,7 +28,7 @@ public class DBConnection {
 "	BLOOD_TYPE VARCHAR(3))";
     
     private static String createProsfora = "create table PROSFORA" +
-"	PK_P INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)," +
+"	(PK_P INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)," +
 "	BLOOD_BOTTLE INTEGER," +
 "	DATE DATE," +
 "	THEIRS_BLOOD INTEGER," +
